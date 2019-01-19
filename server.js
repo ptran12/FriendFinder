@@ -5,12 +5,7 @@ var bodyParser = require('body-parser');
 var PORT = process.env.PORT || 8080
 
 
-// create application/json parser
-var jsonParser = bodyParser.json()
- 
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
- 
+app.use(bodyParser.urlencoded({ extended: true }));
  
 // parse various different custom JSON types as JSON
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -25,5 +20,5 @@ require("./app/routing/api-routes")(app) //api route
 require(".//app/routing/html-routes")(app); //requiring file 
 
 app.listen(PORT, function () {
-    console.log("Server listneing on: http://localhost: " + PORT);
+    console.log("Server listneing on: http://localhost:"+PORT);
 });
